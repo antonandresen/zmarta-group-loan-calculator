@@ -3,7 +3,7 @@
     <h3>{{label}}</h3>
     <div>
       <MinusButton v-on:dec-val="$emit('dec-val', label, step, min)" />
-      <input type="text" :value="value + ' ' + suffix" readonly />
+      <input type="text" :value="spacedValue + ' ' + suffix" readonly />
       <PlusButton v-on:inc-val="$emit('inc-val', label, step, max)" />
     </div>
   </section>
@@ -34,6 +34,11 @@ export default {
     },
     max: {
       type: Number
+    }
+  },
+  computed: {
+    spacedValue: function() {
+      return this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
   }
 };

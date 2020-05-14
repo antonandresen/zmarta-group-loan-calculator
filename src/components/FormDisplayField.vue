@@ -1,7 +1,7 @@
 <template>
   <section>
     <h3>{{label}}</h3>
-    <p>{{value}} {{suffix}}</p>
+    <p>{{spacedValue}} {{suffix}}</p>
   </section>
 </template>
 
@@ -17,6 +17,11 @@ export default {
     },
     value: {
       type: Number
+    }
+  },
+  computed: {
+    spacedValue: function() {
+      return this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
   }
 };
