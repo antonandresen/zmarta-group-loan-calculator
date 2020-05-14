@@ -23,4 +23,13 @@ export default {
 </script>
 
 <style scoped>
+section {
+  padding-bottom: 1rem;
+}
+h3 {
+  padding-bottom: 0.3rem;
+}
+p {
+  font-size: 2rem;
+}
 </style>

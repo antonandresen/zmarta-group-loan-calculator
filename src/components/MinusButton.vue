@@ -1,5 +1,5 @@
 <template>
-  <button class="calculator-button">
+  <button class="calculator-button" v-on:click="$emit('dec-val')">
     <span>-</span>
   </button>
 </template>
@@ -19,7 +19,7 @@ export default {
   width: 44px;
   height: 44px;
   content: "";
-  font-size: 40px;
+  font-size: 30px;
   color: white;
   background: #61d5a7;
   border-radius: 50%;

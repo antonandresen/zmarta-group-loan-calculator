@@ -1,5 +1,5 @@
 <template>
-  <button class="calculator-button">
+  <button class="calculator-button" v-on:click="$emit('inc-val')">
     <span>+</span>
   </button>
 </template>
@@ -12,20 +12,21 @@ export default {
 
 <style scoped>
 .calculator-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   line-height: 1;
   overflow: hidden;
-  display: inline-block;
   width: 44px;
   height: 44px;
   content: "";
-  font-size: 40px;
+  font-size: 30px;
   color: white;
   background: #61d5a7;
   border-radius: 50%;
   cursor: pointer;
   box-sizing: border-box;
   font-weight: lighter;
-  padding-bottom: 4px;
 }
 </style>

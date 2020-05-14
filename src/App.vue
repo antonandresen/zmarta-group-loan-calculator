@@ -9,24 +9,31 @@
       v-bind:label="loanAmountLabel"
       v-bind:suffix="loanAmountSuffix"
       v-bind:value="loanAmount"
-      step="5000"
-      min="5000"
-      max="600000"
+      v-bind:step="5000"
+      v-bind:min="5000"
+      v-bind:max="600000"
+      v-on:dec-val="decrementFieldValue"
+      v-on:inc-val="incrementFieldValue"
     />
     <FormInputField
       v-bind:label="repaymentYearsLabel"
       v-bind:suffix="repaymentYearsSuffix"
       v-bind:value="repaymentYears"
-      step="1"
-      min="1"
-      max="15"
+      v-bind:step="1"
+      v-bind:min="1"
+      v-bind:max="15"
+      v-on:dec-val="decrementFieldValue"
+      v-on:inc-val="incrementFieldValue"
     />
+    <button class="cta">{{ctaLabel}}</button>
   </div>
 </template>
 
 <script>
 import { calculateMonthlyCost, defaultFormValues } from "./helpers";
-import { FormInputField, FormDisplayField } from "./components";
+//import { FormInputField, FormDisplayField } from "./components";
+import FormInputField from "./components/FormInputField.vue";
+import FormDisplayField from "./components/FormDisplayField.vue";
 
 export default {
   name: "App",
@@ -52,7 +59,43 @@ export default {
   },
   methods: {
     updateMonthlyCost() {
-      console.log("monthly cost updated!");
+      this.monthlyCost = calculateMonthlyCost(
+        this.loanAmount,
+        this.repaymentYears,
+        this.interest
+      );
+    },
+    incrementFieldValue(label, step, max) {
+      switch (label) {
+        case this.loanAmountLabel: {
+          const newLoanAmount = this.loanAmount + step;
+          if (newLoanAmount <= max) this.loanAmount = newLoanAmount;
+          break;
+        }
+        case this.repaymentYearsLabel: {
+          const newRepaymentYears = this.repaymentYears + step;
+          if (newRepaymentYears <= max) this.repaymentYears = newRepaymentYears;
+          break;
+        }
+      }
+
+      this.updateMonthlyCost();
+    },
+    decrementFieldValue(label, step, min) {
+      switch (label) {
+        case this.loanAmountLabel: {
+          const newLoanAmount = this.loanAmount - step;
+          if (newLoanAmount >= min) this.loanAmount = newLoanAmount;
+          break;
+        }
+        case this.repaymentYearsLabel: {
+          const newRepaymentYears = this.repaymentYears - step;
+          if (newRepaymentYears >= min) this.repaymentYears = newRepaymentYears;
+          break;
+        }
+      }
+
+      this.updateMonthlyCost();
     }
   }
 };
@@ -64,10 +107,28 @@ export default {
   margin: 0;
   padding: 0;
 }
-body {
+body,
+input,
+button {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+#app {
+  width: 340px;
+  margin: 1.5rem 1rem;
+}
+
+.cta {
+  margin-top: 1rem;
+  display: flex;
+  background: #61d5a7;
+  border: none;
+  color: white;
+  border-radius: 2rem;
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.3rem;
 }
 </style>
