@@ -1,28 +1,47 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <FormField />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { calculateMonthlyCost, defaultFormValues } from "./helpers";
+import { FormField } from "./components";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    FormField
+  },
+  data() {
+    const { loanAmount, repaymentYears, interest } = defaultFormValues;
+    return {
+      monthlyCost: calculateMonthlyCost(loanAmount, repaymentYears, interest),
+      loanAmount,
+      repaymentYears,
+      monthlyCostLabel: "Månadskostnad",
+      monthlyCostSuffix: "kr",
+      loanAmountLabel: "Lånebelopp",
+      loanAmountSuffix: "kr",
+      repaymentYearsLabel: "Återbetalningstid",
+      repaymentYearsSuffix: "år",
+      ctaLabel: "Ansök nu",
+      interest
+    };
   }
-}
+};
 </script>
 
 <style>
-#app {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
