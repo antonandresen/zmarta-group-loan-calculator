@@ -25,7 +25,10 @@
       v-on:dec-val="decrementFieldValue"
       v-on:inc-val="incrementFieldValue"
     />
-    <button class="cta">{{ctaLabel}}</button>
+    <button class="cta">
+      <p>{{ctaLabel}}</p>
+      <img src="arrow-right.png" alt="right arrow" />
+    </button>
   </div>
 </template>
 
@@ -113,7 +116,7 @@ button {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #221e48;
 }
 #app {
   width: 340px;
@@ -123,12 +126,20 @@ button {
 .cta {
   margin-top: 1rem;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: #61d5a7;
   border: none;
   color: white;
   border-radius: 2rem;
   width: 100%;
-  padding: 1.2rem 1.5rem;
+  padding: 0.7rem 1.5rem;
   font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.cta img {
+  width: 50px;
+  height: auto;
 }
 </style>

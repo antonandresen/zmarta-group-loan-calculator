@@ -41,7 +41,7 @@ export default {
 
 <style scoped>
 section {
-  padding-bottom: 1.5rem;
+  padding-bottom: 2rem;
 }
 div {
   display: flex;
@@ -49,7 +49,7 @@ div {
   align-items: center;
 }
 h3 {
-  padding-bottom: 0.3rem;
+  padding-bottom: 0.5rem;
 }
 input {
   padding: 1rem;
