@@ -113,7 +113,7 @@ export default {
 body,
 input,
 button {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: SharpSansNo1-Book, Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #221e48;
